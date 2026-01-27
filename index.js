@@ -30,5 +30,5 @@ app.use("/api/gallery", galleryRoute);
 
 // 👇 START SERVER
 app.listen(process.env.PORT || 5000, () => {
-  console.log("SERVER UPDATED: READY FOR SMS 2.0 🚀");
+  console.log("Backend server is running!");
 });
