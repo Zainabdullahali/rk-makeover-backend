@@ -6,7 +6,8 @@ const cors = require("cors");
 
 // 👇 IMPORT ROUTES
 const bookingRoute = require("./routes/bookings");
-const serviceRoute = require("./routes/services"); // <--- NEW LINE ADDED ✅
+const serviceRoute = require("./routes/services");
+const galleryRoute = require("./routes/gallery"); // <--- NEW LINE ✅
 
 dotenv.config();
 
@@ -17,12 +18,14 @@ mongoose
     console.log(err);
   });
 
+// Increase limit for image uploads
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "10mb" })); // <--- UPDATED: Allow larger files (Images)
 
 // 👇 USE ROUTES
 app.use("/api/bookings", bookingRoute);
-app.use("/api/services", serviceRoute); // <--- NEW LINE ADDED ✅
+app.use("/api/services", serviceRoute);
+app.use("/api/gallery", galleryRoute); // <--- NEW LINE ✅
 
 app.listen(process.env.PORT || 5000, () => {
   console.log("Backend server is running!");
